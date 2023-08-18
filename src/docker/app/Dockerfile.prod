@@ -1,22 +1,10 @@
-FROM node:latest as development
+FROM node:latest 
 WORKDIR /usr/prod
-
 COPY package*.json ./
+COPY .env ./
 RUN npm install
 RUN npm i typescript -g
 COPY . .
 RUN npm run build
-
-FROM node:latest
-
-WORKDIR /usr/prod
-
 COPY package*.json ./
-RUN npm install --omit=dev
-COPY --from=development /usr/prod/.env ./
-COPY --from=development /usr/prod/build ./build
-COPY --from=development /usr/prod/prisma ./prisma
-
-
-
 CMD ["npm", "run", "start"]
