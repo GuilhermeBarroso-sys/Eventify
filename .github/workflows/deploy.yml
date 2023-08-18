@@ -10,13 +10,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Set up environment variables
-        run: echo "${{secrets.ENV_CONTENT}}" > .env
-
-      - name: Check environment variables
-        run: cat .env
-
+        run: echo "${{secrets.ENV_DATABASE_URL}}" > .env
+      - name: Set up environment variables
+        run: echo "${{secrets.ENV_MYSQL_USER}}" >> .env
+      - name: Set up environment variables
+        run: echo "${{secrets.ENV_MYSQL_ROOT_PASSWORD}}" >> .env
+      - name: Set up environment variables
+        run: echo "${{secrets.ENV_MYSQL_PASSWORD}}" >> .env
+      - name: Set up environment variables
+        run: echo "${{secrets.ENV_MYSQL_DATABASE}}" >> .env
       - name: Deploy to DigitalOcean Droplet
         uses: appleboy/ssh-action@master
         with:
@@ -26,5 +29,6 @@ jobs:
           script: |
             cd Eventify
             git pull origin master
+            node --version > .nvmrc
             npm i --omit=dev
             docker compose  -f docker-compose.prod.yml up --build

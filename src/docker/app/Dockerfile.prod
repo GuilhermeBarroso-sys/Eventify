@@ -13,7 +13,7 @@ WORKDIR /usr/prod
 
 COPY package*.json ./
 RUN npm install --omit=dev
-COPY .env ./
+COPY --from=development /usr/prod/.env ./
 COPY --from=development /usr/prod/build ./build
 COPY --from=development /usr/prod/prisma ./prisma
 
