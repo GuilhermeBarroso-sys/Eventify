@@ -14,7 +14,6 @@ jobs:
           host: ${{secrets.DROPLET_IP}}
           username: ${{secrets.SSH_USERNAME}}
           key: ${{secrets.SSH_PRIVATE_KEY}}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd Eventify
             echo 'Deployment to digital ocean finished'
