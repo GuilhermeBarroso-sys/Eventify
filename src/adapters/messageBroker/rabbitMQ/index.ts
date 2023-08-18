@@ -1,0 +1,33 @@
+import amqplib from "amqplib"
+const AMQP_URL = process.env.AMQP_URL || 'amqp://localhost:5672'
+
+class RabbitMq {
+  public connection : amqplib.Connection
+  public channel : amqplib.Channel
+  async start(url: string) {
+    try {
+      const connection = await amqplib.connect(url)
+      const channel = await connection.createChannel()
+      this.connection = connection
+      this.channel = channel
+      process.env.NODE_ENV != "production" && console.log('RabbitMQ connected with success! 🐰')
+    } catch(err) {
+      console.log(err)
+    }
+  }
+  async closeMessageBroker()  {
+    await this.channel.close()
+    await this.connection.close()
+    console.log("closing RabbitMQ...")
+    process.exit(-1)
+  }
+}
+
+export const rabbitMq = new RabbitMq()
+
+
+
+
+
+
+
