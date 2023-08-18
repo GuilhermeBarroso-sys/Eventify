@@ -1,4 +1,4 @@
-import { CustomError, TError } from "./customError";
+import { CustomError, TError } from "./CustomError";
 
 class NotFoundError extends CustomError {
   statusCode = 404;

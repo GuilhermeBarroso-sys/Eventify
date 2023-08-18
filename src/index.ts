@@ -3,7 +3,7 @@ import { rabbitMq } from "./adapters/messageBroker/rabbitMQ";
 import { PaymentCreatedListener } from "./adapters/messageBroker/rabbitMQ/listeners/PaymentCreatedListener";
 import { PaymentCreatedPublisher } from "./adapters/messageBroker/rabbitMQ/publishers/PaymentCreatedPublisher";
 import { app } from "./app";
-import { clusterModule } from "./utils/ClusterModule";
+import { clusterModule } from "./utils/clusterModule";
 const AMQP_URL = process.env.AMQP_URL || 'amqp://rabbitmq:5672'
 
 const start = async () => {
