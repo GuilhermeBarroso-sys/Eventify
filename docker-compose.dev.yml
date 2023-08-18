@@ -47,7 +47,7 @@ services:
       - .:/usr/dev
   nginx:
       image: nginx:latest
-      container_name: 'my-nginx'
+      container_name: 'nginx'
       ports:
         - "80:80"
       volumes:
