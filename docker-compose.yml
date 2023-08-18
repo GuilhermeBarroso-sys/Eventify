@@ -44,7 +44,6 @@ services:
     container_name: 'app'
     volumes:
       - .:/usr/
-      - ./node_modules
   nginx:
       image: nginx:latest
       container_name: 'my-nginx'
