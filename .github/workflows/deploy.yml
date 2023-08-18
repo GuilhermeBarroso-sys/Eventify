@@ -1,0 +1,29 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up doctl
+        uses: digitalocean/doctl-action@v2
+        with:
+          token: ${{ secrets.DOCTL_TOKEN }}
+
+      - name: Copy docker-compose.yml to Droplet
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > private-key.pem
+          chmod 600 private-key.pem
+          doctl compute scp ./* ubuntu:/app --ssh-private-key private-key.pem
+
+      - name: SSH into Droplet and start project
+        run: |
+          doctl compute ssh ubuntu --ssh-private-key private-key.pem -- sh -c "cd /app && docker-compose up -d"
