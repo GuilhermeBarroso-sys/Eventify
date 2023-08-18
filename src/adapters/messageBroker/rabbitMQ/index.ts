@@ -2,8 +2,11 @@ import amqplib from "amqplib"
 const AMQP_URL = process.env.AMQP_URL || 'amqp://localhost:5672'
 
 class RabbitMq {
-  public connection : amqplib.Connection
-  public channel : amqplib.Channel
+  // @ts-ignore
+  channel : amqplib.Channel
+  // @ts-ignore
+  connection : amqplib.Connection
+ 
   async start(url: string) {
     try {
       const connection = await amqplib.connect(url)

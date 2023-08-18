@@ -1,0 +1,14 @@
+FROM node:alpine
+
+WORKDIR /usr/dev
+
+COPY package*.json ./
+COPY .env ./
+
+RUN npm i --production
+RUN npm i typescript
+COPY . .
+
+
+
+CMD ["npm", "run", "start"]

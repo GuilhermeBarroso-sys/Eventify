@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "export NODE_ENV=production && npx tsc && npx prisma db push && node ./build/index.js",
     "dev": "ts-node-dev --transpile-only --exit-child --ignore-watch node_modules src/index.ts"
   },
   "keywords": [],

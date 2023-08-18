@@ -8,6 +8,15 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up environment variables
+        run: echo "${{secrets.ENV_CONTENT}}" > .env
+
+      - name: Check environment variables
+        run: cat .env
+
       - name: Deploy to DigitalOcean Droplet
         uses: appleboy/ssh-action@master
         with:
