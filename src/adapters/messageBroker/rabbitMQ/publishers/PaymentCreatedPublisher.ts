@@ -2,7 +2,7 @@ import { Exchanges } from "../enum/exchange";
 import { Queues } from "../enum/queues";
 import { RoutingKeys } from "../enum/routingKey";
 import { PaymentCreatedEventPublisher } from "../events/paymentCreatedEvent";
-import { Publisher } from "../publisher";
+import { Publisher } from "../Publisher";
 
 export class PaymentCreatedPublisher extends Publisher<PaymentCreatedEventPublisher> {
   readonly exchange = Exchanges.paymentCreated;
