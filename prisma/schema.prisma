@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(uuid())
+  name     String
+  email    String
+  password String
+  Events   Event[]
+  Order    Order[]
+
+  @@map("users")
+}
+
+model Event {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  userId      User     @relation(fields: [owner_id], references: [id])
+  owner_id    String
+  tags        String?
+  price       Float
+  amount      Int
+  isBlocked   Boolean  @default(false)
+  event_date  DateTime
+  image_url   String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  Order       Order[]
+
+  @@map("events")
+}
+
+model Order {
+  id       String      @id @default(uuid())
+  userId   User        @relation(fields: [user_id], references: [id])
+  user_id  String
+  eventId  Event       @relation(fields: [event_id], references: [id])
+  event_id String
+  status   OrderStatus
+
+  @@map("orders")
+}
+
+model Tag {
+  id              String   @id @default(uuid())
+  name            String
+  backgroundColor String
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+
+  @@map("tags")
+}
+
+enum OrderStatus {
+  pending
+  completed
+  cancelled
+}
