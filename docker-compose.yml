@@ -43,7 +43,8 @@ services:
       - 3000:3000
     container_name: 'app'
     volumes:
-      - .:/usr/dev
+      - .:/usr/
+      - ./node_modules
   nginx:
       image: nginx:latest
       container_name: 'my-nginx'

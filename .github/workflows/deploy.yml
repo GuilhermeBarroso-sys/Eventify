@@ -1,27 +1,19 @@
-name: Deploy to Droplet
-
-on:
+name: Deploy to DigitalOcean Droplet
+'on':
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up SSH key
-        uses: webfactory/ssh-agent@v0.5.1
+      - name: Deploy to DigitalOcean Droplet
+        uses: appleboy/ssh-action@master
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Copy files to Droplet
-        run: |
-          scp -r -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ./ root@${{ secrets.DROPLET_IP }}:~/eventify
-
-      - name: SSH into Droplet and start Docker Compose
-        run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} root@${{ secrets.DROPLET_IP }} 'cd ~/eventify && docker-compose up -d'
+          host: ${{secrets.DROPLET_IP}}
+          username: ${{secrets.SSH_USERNAME}}
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          script: |
+            cd Eventify
+            echo 'Deployment to digital ocean finished'
