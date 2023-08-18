@@ -1,4 +1,4 @@
-name: Deploy to DigitalOcean
+name: Deploy to Droplet
 
 on:
   push:
@@ -13,17 +13,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up doctl
-        uses: digitalocean/doctl-action@v2
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.5.1
         with:
-          token: ${{ secrets.DOCTL_TOKEN }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Copy docker-compose.yml to Droplet
+      - name: Copy files to Droplet
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > private-key.pem
-          chmod 600 private-key.pem
-          doctl compute scp ./* ubuntu:/app --ssh-private-key private-key.pem
+          scp -r -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ./ root@${{ secrets.DROPLET_IP }}:/eventify
 
-      - name: SSH into Droplet and start project
+      - name: SSH into Droplet and start Docker Compose
         run: |
-          doctl compute ssh ubuntu --ssh-private-key private-key.pem -- sh -c "cd /app && docker-compose up -d"
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} root@${{ secrets.DROPLET_IP }} 'cd /eventify && docker-compose up -d'

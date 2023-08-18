@@ -13,7 +13,9 @@ app.use(cookieSession({
   secure: false,
 }))
 app.get("/test", (request, response) => {
-  return response.status(200).send()
+  return response.status(200).send(
+    `<!DOCTYPE html> <html><head><title>My nginx</title></head><body><h1> Hello world! </h1></body></html>`
+  )
 })
 
 
