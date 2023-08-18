@@ -20,8 +20,8 @@ jobs:
 
       - name: Copy files to Droplet
         run: |
-          scp -r -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ./ root@${{ secrets.DROPLET_IP }}:/eventify
+          scp -r -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ./ root@${{ secrets.DROPLET_IP }}:~/eventify
 
       - name: SSH into Droplet and start Docker Compose
         run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} root@${{ secrets.DROPLET_IP }} 'cd /eventify && docker-compose up -d'
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} root@${{ secrets.DROPLET_IP }} 'cd ~/eventify && docker-compose up -d'
