@@ -2,8 +2,7 @@
   "exclude": [
     "node_modules",
     "**/*.test.ts",
-    "jest.config.ts",
-    "**/test"
+    "jest.config.ts"
     
   ],
   "compilerOptions": {

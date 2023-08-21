@@ -29,7 +29,7 @@ app.get("/test", async(request, response) => {
     return response.status(404).send(`<!DOCTYPE html> <html><head><title>My nginx</title></head><body><h1> Hello world! Users not found!`)
 
   }
-  new PaymentCreatedPublisher(rabbitMq.channel).publish({hello: "world"})
+  // new PaymentCreatedPublisher(rabbitMq.channel).publish({hello: "world"})
   return response.status(200).send(
     `<!DOCTYPE html> <html><head><title>My nginx</title></head><body><h1> Hello world! Users found : ${users.length}</h1></body></html>`
   )
