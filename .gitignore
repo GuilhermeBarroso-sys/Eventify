@@ -4,3 +4,5 @@ node_modules
 .DS_STORE
 .docker
 build
+coverage
+nginx.conf

@@ -1,6 +1,12 @@
 
 dev:
 	docker compose  -f docker-compose.dev.yml up
+dev_down: 
+	docker compose  -f docker-compose.dev.yml down
+dev_stop: 
+	docker compose  -f docker-compose.dev.yml stop
+dev_sh:
+	docker exec -it app /bin/sh
 
 prod:
 	docker compose  -f docker-compose.prod.yml up --build -d
