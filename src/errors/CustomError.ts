@@ -8,8 +8,8 @@ abstract class CustomError extends Error {
   abstract serializeErrors(): Array<TError>
 
   constructor(message : string) {
-    super(message)
-    Object.setPrototypeOf(this, CustomError.prototype)
+  	super(message);
+  	Object.setPrototypeOf(this, CustomError.prototype);
 
   }
 }

@@ -70,7 +70,7 @@ export default {
 		"process.env": {
 			"NODE_ENV": "test",
 			"JWT_SECRET": "unit-test",
-      "DATABASE_URL" : "mysql://eventify:root@app-mysql:3306/eventify"
+			"DATABASE_URL" : "mysql://eventify:root@app-mysql:3306/eventify"
 
 		}
 	},
@@ -144,8 +144,10 @@ export default {
 
 	// A list of paths to modules that run some code to configure or set up the testing framework before each test
 	setupFilesAfterEnv: [
-    "./src/test/setup.ts"
-  ],
+		"./src/test/setup.ts",
+		"./src/test/userSetup.ts",
+
+	],
 
 	// The number of seconds after which a test is considered as slow and reported as such in the results.
 	// slowTestThreshold: 5,
