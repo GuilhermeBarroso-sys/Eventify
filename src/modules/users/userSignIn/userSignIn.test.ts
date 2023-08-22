@@ -1,16 +1,26 @@
 import supertest from "supertest";
 import {app} from "../../../app";
-describe("Testing user sign up feature", () => {
+describe("Testing user sign in feature", () => {
 	it("Should to throw an error if the user doesn't provide required params", async () => {
 		await supertest(app)
-			.post("/users/signup")
+			.post("/users/signin")
 			.send({
-				name: "test"
+				email: "test"
 			})
 			.expect(400);
 	});
 
-	it("Should throw an error if the user already exists", async () => {
+	it("Should throw an error if the credentials are wrong", async () => {
+		await supertest(app)
+			.post("/users/signin")
+			.send({
+				email: "testttt@gmail.com",
+				password: "test123"
+			})
+			.expect(404);
+	});
+
+	it("Should sign in a user", async () => {
 		await supertest(app)
 			.post("/users/signup")
 			.send({
@@ -19,24 +29,14 @@ describe("Testing user sign up feature", () => {
 				password: "test123"
 			})
 			.expect(201);
-		await supertest(app)
-			.post("/users/signup")
+		const response = await supertest(app)
+			.post("/users/signin")
 			.send({
-				name: "testtt",
 				email: "testttt@gmail.com",
 				password: "test123"
 			})
-			.expect(400);
-	});
-
-	it("Should create a user", async () => {
-		await supertest(app)
-			.post("/users/signup")
-			.send({
-				name: "testtt",
-				email: "testttt@gmail.com",
-				password: "test123"
-			})
-			.expect(201);
+			.expect(200);
+      
+		expect(response.headers["set-cookie"]).toBeDefined();
 	});
 });

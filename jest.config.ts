@@ -69,7 +69,7 @@ export default {
 	"globals": {
 		"process.env": {
 			"NODE_ENV": "test",
-			"JWT_SECRET": "unit-test",
+			"JWT_SECRET": "test",
 			"DATABASE_URL" : "mysql://eventify:root@app-mysql:3306/eventify"
 
 		}

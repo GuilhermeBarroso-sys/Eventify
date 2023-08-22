@@ -14,7 +14,7 @@ class UserSignInUseCase {
 
 	async execute({email,password} : IUserSignInUseCase) {
 		const userExist = await this.userRepository.query<User>({
-			sql: `SELECT id,email,password FROM users WHERE email = ${email} LIMIT 1`
+			sql: `SELECT id,name,email,password FROM users WHERE email = '${email}' LIMIT 1`
 		});
 		if(!userExist) {
 			throw new NotFoundError();

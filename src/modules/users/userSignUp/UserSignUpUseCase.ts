@@ -1,6 +1,5 @@
 import { randomUUID } from "crypto";
 import { BadRequestError } from "../../../errors/BadRequestError";
-import { Password } from "../../../utils/passwordHash";
 import { IUserRepository, User } from "../repositories/IUserRepository";
 import {sign} from "jsonwebtoken";
 interface IUserSignUpUseCase {
@@ -15,7 +14,7 @@ class UserSignUpUseCase {
 
 	async execute({name, email ,password} : IUserSignUpUseCase) {
 		const userExist = await this.userRepository.query<User>({
-			sql: `SELECT id,email,password FROM users WHERE email = "${email}" LIMIT 1`
+			sql: `SELECT id FROM users WHERE email = "${email}" LIMIT 1`
 		});
 		if(userExist) {
 			throw new BadRequestError("This user already exists!");

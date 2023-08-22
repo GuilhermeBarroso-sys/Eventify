@@ -16,6 +16,8 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "no-var": "off",
+        "@typescript-eslint/no-namespace": "off",
         "indent": [
             "error",
             "tab"
