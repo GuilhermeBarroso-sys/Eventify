@@ -1,7 +1,7 @@
 import supertest from "supertest";
 import {app} from "../../../app";
 describe("Testing user sign in feature", () => {
-	it("Should to throw an error if the user doesn't provide required params", async () => {
+	it("Should throw an error if the user doesn't provide required params", async () => {
 		await supertest(app)
 			.post("/users/signin")
 			.send({

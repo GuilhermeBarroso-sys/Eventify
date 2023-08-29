@@ -27,7 +27,7 @@ class UserSignUpUseCase {
 			password
 		};
 
-		await this.userRepository.query({sql: `INSERT INTO users (id,name, email, password) VALUES ("${id}", "${name}", "${email}", "${password}")`});
+		await this.userRepository.create(user);
 		const userWithoutPassword = {...user, password: undefined};
 		const token = sign(userWithoutPassword, process.env.JWT_SECRET as string);
 		return {

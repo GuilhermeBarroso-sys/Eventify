@@ -31,11 +31,11 @@ model Event {
   tags        String?
   price       Float
   amount      Int
-  isBlocked   Boolean  @default(false)
+  is_blocked  Boolean  @default(false)
   event_date  DateTime
   image_url   String?
   created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  updated_at  DateTime @default(now()) @updatedAt
   Order       Order[]
 
   @@map("events")

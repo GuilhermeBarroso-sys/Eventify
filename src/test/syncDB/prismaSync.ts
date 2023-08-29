@@ -4,7 +4,7 @@ const syncDB = () => {
 	return new Promise((res,rej) => {
 		exec("npx prisma db push", (err) => {
 			if(err) {
-				rej();
+				rej(err);
 			}
 			
 			res(null);
@@ -12,11 +12,10 @@ const syncDB = () => {
 	});
 };
 
-process.env.DATABASE_URL="mysql://root:root@app-mysql:3306/eventify_test";
 try {
+	process.env.DATABASE_URL="mysql://root:root@app-mysql:3306/eventify_test";
 	syncDB();
 } catch(err) {
 	console.error(err);
 }
 	
-
