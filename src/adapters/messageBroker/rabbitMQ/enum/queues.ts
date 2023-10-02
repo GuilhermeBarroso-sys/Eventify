@@ -1,5 +1,5 @@
 export enum Queues {
-  paymentCreated = "payment_created_queue",
-  paymentPending = "payment_pending_queue",
-  paymentCancelled = "payment_cancelled_queue"
+  orderCreated = "order_created_queue",
+  orderPending = "order_pending_queue",
+  orderCancelled = "order_cancelled_queue"
 }

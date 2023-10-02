@@ -13,7 +13,6 @@ export function ensureAuth(request : Request, response: Response, next: NextFunc
 		throw new NotAuthorizedError();
 	}
 	try {
-
 		const payload = verify(request.session.token, process.env.JWT_SECRET as string) as ICurrentUser;
 		request.user = payload;
 		next();

@@ -10,11 +10,11 @@ abstract class Listener<T extends Event> {
   abstract onMessage(data : T["data"], message: amqplib.ConsumeMessage | null) : void
   constructor(protected channel : amqplib.Channel) {}
   listen() {
-    this.channel.consume(this.queue, (message) => {
-      const data = JSON.parse(message!.content.toString())
+  	this.channel.consume(this.queue, (message) => {
+  		const data = JSON.parse(message!.content.toString());
       
-      this.onMessage(data, message)
-    }, this.options)
+  		this.onMessage(data, message);
+  	}, this.options);
   }
 }
 

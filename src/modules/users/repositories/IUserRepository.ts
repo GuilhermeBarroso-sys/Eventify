@@ -2,14 +2,15 @@ export type User = {
   id: string;
   name: string;
   email: string;
-  password: string;
+  isSSO: boolean;
+  password?: string;
 }
 
 export interface ICreateUser {
   id?: string;
   name: string;
   email: string;
-  password: string;
+  password?: string;
 }
 export interface IQueryParams {
   sql: string

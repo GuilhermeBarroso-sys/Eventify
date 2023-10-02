@@ -5,7 +5,6 @@ import "express-async-errors";
 import { NotFoundError } from "./errors/NotFoundError";
 import { errorHandler } from "./middlewares/errorHandler";
 import { routes } from "./routes";
-import { ensureAuth } from "./middlewares/ensureAuth";
 
 
 const app = express();
@@ -17,11 +16,6 @@ app.use(cookieSession({
 	secure: false,
 }));
 app.use(routes);
-app.get("/test", ensureAuth, (request, response) => {
-	return response.status(200).json("ok");
-});
-
-
 
 app.all("*", () => {
 	throw new NotFoundError();

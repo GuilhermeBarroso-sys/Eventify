@@ -1,5 +1,5 @@
 export enum Exchanges {
-  paymentCreated = "payment_created_exchange",
-  paymentPending = "payment_pending_exchange",
-  paymentCancelled = "payment_cancelled_exchange"
+  orderCreated = "order_created_exchange",
+  orderPending = "order_pending_exchange",
+  orderCancelled = "order_cancelled_exchange"
 }

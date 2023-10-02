@@ -1,5 +1,5 @@
 export enum RoutingKeys {
-  paymentCreated = "payment.created",
-  paymentPending = "payment.pending",
-  paymentCancelled = "payment.cancelled"
+  orderCreated = "order.created",
+  orderPending = "order.pending",
+  orderCancelled = "order.cancelled"
 }
