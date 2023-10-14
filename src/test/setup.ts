@@ -20,6 +20,8 @@ beforeAll(async () => {
 	process.env.JWT_SECRET = "test";
 	process.env.DATABASE_URL="mysql://root:root@app-mysql:3306/eventify_test";	
 });
+
+
 jest.mock("../utils/sendToBucket.ts", () => {
 	return {
 		sendToBucket: async () => {
@@ -64,6 +66,7 @@ export async function signIn() {
 	return {user: payload, cookie:[`session=${base64}`]};
 } 
 afterEach(async () => {
+	await prisma.order.deleteMany();
 	await prisma.event.deleteMany();
 	await prisma.user.deleteMany();
 });

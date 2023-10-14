@@ -22,13 +22,5 @@ class ListAllEventsController {
 
 export { ListAllEventsController };
 
-// {
-// 	"name": "test",
-// 	"description": "test",
-// 	"tags" : "1,2,3,4",
-// 	"price": 123.53,
-// 	"amount": 35,
-// 	"event_date": "{% now 'iso-8601', '' %}"
-	
-// }
+
 

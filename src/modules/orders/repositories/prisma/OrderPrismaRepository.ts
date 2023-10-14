@@ -10,6 +10,7 @@ class OrderPrismaRepository implements IOrderRepository {
 	}
 
 	async create(data: ICreateOrder): Promise<void> {
+		console.log(data.id);
 		await prisma.order.create({data});
 	}
 

@@ -2,9 +2,7 @@ export type Order = {
   id: string;
   user_id: string;
   event_id: string;
-  expires_at?: string;
   status: "pending" | "completed" | "cancelled"
-  price?: number;
   created_at: Date;
   updated_at: Date;
 }
@@ -13,18 +11,14 @@ export interface ICreateOrder {
   id?: string;
   user_id: string;
   event_id: string;
-  expires_at?: string;
   status: "pending" | "completed" | "cancelled"
-  price?: number;
 }
 
 export interface IUpdateOrder {
   id: string;
-  user_id: string;
-  event_id: string;
-  expires_at?: string;
-  status: "pending" | "completed" | "cancelled"
-  price?: number;
+  user_id?: string;
+  event_id?: string;
+  status?: "pending" | "completed" | "cancelled"
 }
 export interface IQueryParams {
   sql: string

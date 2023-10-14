@@ -1,7 +1,8 @@
 import { Exchanges } from "../enum/exchange";
 import { Queues } from "../enum/queues";
 import { RoutingKeys } from "../enum/routingKey";
-import { OrderCreatedEventPublisher } from "../events/orderCreatedEvent";
+import { OrderCreatedEventPublisher } from "../events/OrderCreatedEvent";
+
 import { Publisher } from "../Publisher";
 
 export class OrderCreatedPublisher extends Publisher<OrderCreatedEventPublisher> {

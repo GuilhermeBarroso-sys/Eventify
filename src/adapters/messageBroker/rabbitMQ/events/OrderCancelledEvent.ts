@@ -3,11 +3,11 @@ import { Exchanges } from "../enum/exchange";
 import { ExchangeType } from "../enum/exchangeType";
 import { Queues } from "../enum/queues";
 import { RoutingKeys } from "../enum/routingKey";
-export interface OrderCreatedEventPublisher {
-  exchange : Exchanges.orderCreated
+export interface OrderCancelledEventPublisher {
+  exchange : Exchanges.orderCancelled
   exchangeType : ExchangeType.direct | string
-  queue : Queues.orderCreated
-  routingKey : RoutingKeys.orderCreated
+  queue : Queues.orderCancelled
+  routingKey : RoutingKeys.orderCancelled
   exchangeOptions: amqplib.Options.AssertExchange | undefined
   data: {
     event_id: string;
@@ -15,11 +15,10 @@ export interface OrderCreatedEventPublisher {
   }
 }
 
-export interface OrderCreatedEventListener {
-  queue : Queues.orderCreated
+export interface OrderCancelledEventListener {
+  queue : Queues.orderCancelled
   data: {
-    event_id: string;
     order_id: string;
-
+    event_id: string;
   }
 }
