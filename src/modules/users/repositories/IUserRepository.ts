@@ -10,6 +10,7 @@ export interface ICreateUser {
   id?: string;
   name: string;
   email: string;
+  isSSO?: boolean;
   password?: string;
 }
 export interface IQueryParams {

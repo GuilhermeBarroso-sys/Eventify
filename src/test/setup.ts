@@ -69,4 +69,6 @@ afterEach(async () => {
 	await prisma.order.deleteMany();
 	await prisma.event.deleteMany();
 	await prisma.user.deleteMany();
+	await prisma.tag.deleteMany();
+
 });
