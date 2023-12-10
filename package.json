@@ -9,7 +9,7 @@
     "test:syncDB": "ts-node-dev --ignore-watch node_modules src/test/syncDB/prismaSync.ts && jest --no-coverage --watchAll",
     "start": "export NODE_ENV=production && npx prisma db push && node ./build/index.js",
     "build": "tsc",
-    "dev": "export NODE_ENV=dev && ts-node-dev --transpile-only --exit-child --ignore-watch node_modules src/index.ts"
+    "dev": "export NODE_ENV=dev && ts-node-dev --transpile-only --exit-child --ignore-watch 'node_modules,eventify-client' src/index.ts"
   },
   "keywords": [],
   "author": "",
